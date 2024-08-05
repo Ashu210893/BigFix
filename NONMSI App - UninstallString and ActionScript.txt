@@ -1,0 +1,6 @@
+﻿if (windows of operating system AND (if exists property whose(it as string contains "in proxy agent context") then NOT in proxy agent context else TRUE)) then ( unique values of (it as string) of ( (it as trimmed string) of (preceding text of first "%ae" of it | it) of (preceding text of first "Â" of it | it) of (preceding text of first "%a9" of it | it) of (preceding text of first "™" of it | it) of (it as string) of values "DisplayName" of it, value "UninstallString_Hidden" of it | value "QuietUninstallString" of it | value "UninstallString" of it) whose(item 1 of it as string as trimmed string != "") of keys whose(exists (values "UninstallString" of it; values "QuietUninstallString" of it; values "UninstallString_Hidden" of it) AND not exists (values "UninstallString" of it; values "ModifyPath" of it) whose(it as string as lowercase contains "msiexec")) of keys "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" of (x64 registries; x32 registries) ) else NOTHINGS
+
+
+Action Script:
+waithidden "C:\Windows10Upgrade\Windows10UpgraderApp.exe" /Uninstall /S
+waithidden C:\Program Files\TeamViewer\Version9\uninstall.exe /S

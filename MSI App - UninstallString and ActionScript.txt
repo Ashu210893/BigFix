@@ -1,0 +1,5 @@
+(value "DisplayName" of it, (if(it as string contains "%00") then (substring before "%00" of (it as string)) else (it as string)) of value "UninstallString" of it & " /qn") of keys whose ((value "UninstallString" of it as string as lowercase contains "msiexec")) of key "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall" of registry
+
+
+Action Script:
+wait MsiExec.exe /I {{D9FB7F91-9687-4B09-894D-072903CADEA4} /qn
